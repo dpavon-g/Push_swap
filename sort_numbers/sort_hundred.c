@@ -14,6 +14,17 @@ int number_of_chunk(total)
         return (1);
 }
 
+// void    separate_piles(t_num **pilea, int *array, int total)
+// {
+//     int chunks;
+//     int i;
+
+//     while (i < total)
+//     {
+
+//     }
+// }
+
 void    sort_array(t_num **pilea, int *array, int total)
 {
     int i;
@@ -38,8 +49,8 @@ void    sort_array(t_num **pilea, int *array, int total)
         i++;
     }
     *pilea = (*pilea)->next;
-    ft_printf("%d", number_of_chunk(total));
-    // separate_piles(pilea, array, total);
+    //ft_printf("%d", number_of_chunk(total));
+    separate_piles(pilea, array, total);
 }
 
 int order_hundred(t_num **pilea, int total)
