@@ -42,6 +42,7 @@ int		order_five(t_num **pilea, t_num **pileb, int total);
 int		cases_five(t_num **pilea, t_num **pileb, int position, int total);
 int		cases2_five(t_num **pilea, t_num **pileb, int position, int total);
 int		cases3_five(t_num **pilea, t_num **pileb);
+int		order_hundred(t_num **pilea, int total);
 int		sa_sb(t_num **pile);
 int		pa_pb(t_num **pile1, t_num **pile2);
 int		ra_rb(t_num **pile);
