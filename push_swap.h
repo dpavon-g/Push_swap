@@ -29,6 +29,15 @@ typedef struct nodo
 	int				content;
 	struct nodo		*next;
 }	t_num;
+
+typedef struct s_dates
+{
+	int	total;
+	int	chunks;
+	int	columns;
+	int	movements;
+}	t_values;
+
 t_num	*ft_lstnew2(int content);
 void	ft_lstadd_front2(t_num **alst, t_num *new);
 t_num	*ft_lstlast2(t_num *lst);
@@ -42,7 +51,7 @@ int		order_five(t_num **pilea, t_num **pileb, int total);
 int		cases_five(t_num **pilea, t_num **pileb, int position, int total);
 int		cases2_five(t_num **pilea, t_num **pileb, int position, int total);
 int		cases3_five(t_num **pilea, t_num **pileb);
-int		order_hundred(t_num **pilea, int total);
+int		order_hundred(t_num **pilea, t_num **pileb, int total);
 int		sa_sb(t_num **pile);
 int		pa_pb(t_num **pile1, t_num **pile2);
 int		ra_rb(t_num **pile);

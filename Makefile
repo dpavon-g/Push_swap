@@ -10,12 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-ifndef silent
-.SILENT:
-endif
-
 CC = gcc
-NAME = push_swap.a
+NAME = push_swap
 
 SRCS = 	push_swap.c\
 		manage_list/create_list.c\
@@ -40,8 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(LIB_PATH)
-	@cp $(LIB_NAME) $(NAME)
-	@$(CC) $(SRCS) push_swap.a -o push_swap
+	@$(CC) $(SRCS) -L ./libft/ -l ft -o $(NAME)
 
 clean:
 	@make -C $(LIB_PATH) clean
@@ -50,11 +45,7 @@ clean:
 fclean: clean
 	@make -C $(LIB_PATH) fclean
 	@rm -f $(NAME)
-	@rm -f push_swap
-
-com: $(NAME)
-	@$(CC) $(SRCS) push_swap.a -o push_swap
 
 re: fclean all
-bonus: re
+
 .PHONY:	all clean fclean re

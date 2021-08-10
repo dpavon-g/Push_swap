@@ -41,6 +41,6 @@ void	to_sort(t_num **pilea, t_num **pileb)
 	else if (total == 4 || total == 5)
 		movements = order_five(pilea, pileb, total);
 	else if (total > 5 && total <= 100)
-		movements = order_hundred(pilea, total);
+		movements = order_hundred(pilea, pileb, total);
 	ft_printf("Se han realizado un total de %d movimientos\n", movements);
 }

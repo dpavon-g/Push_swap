@@ -72,7 +72,6 @@ BONUSO = $(BONUS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		@$(CC) $(CFLAGS) -c $(SRCS)
 		@ar rcs $(NAME) $(OBJS)
 
 clean:
