@@ -75,32 +75,50 @@ int	*order_array(int *array, t_values *content)
 	return (sort_array); 
 }
 
-void	ordenate_piles(t_num **pilea, t_num **pileb, t_values *content, int *array)
+int	find_in_chunk(int number, int *array, int columns)
 {
 	int	i;
 
 	i = 0;
-	while (i < content->total)
+	while (i < columns)
 	{
-		if (array[i] == (*pilea)->content)
-		{
-			content->movements += pa_pb(pilea, pileb);
-			ft_printf("pb\n");
-			i++;
-		}
-		else
-		{
-			content->movements += ra_rb(pilea);
-			ft_printf("ra\n");
-		}
-	}
-	i = 0;
-	while (i < content->total)
-	{
-		content->movements += pa_pb(pileb, pilea);
-		ft_printf("pa\n");
+		if (array[i] == number)
+			return (1);
 		i++;
 	}
+	return (0);
+}
+
+void	ordenate_piles(t_num **pilea, t_num **pileb, t_values *content, int *array)
+{
+	int	array_position;
+	int	chunk_number;
+	t_num *auxa;
+	t_num *auxb;
+
+	auxa = *pilea;
+	auxb = *pileb;
+	auxa++;
+	auxb++;
+	array_position = 0;
+	chunk_number = 0;
+	array[0] = array[0];
+	while (array_position < content->total)
+	{
+		if (array_position > (content->columns * (chunk_number + 1)))
+		{
+			chunk_number++;
+		}
+		array_position++;
+	}
+	ft_printf("Posicion de chunk final: %d\n", chunk_number);
+	ft_printf("Numero total de chunks: %d\n", content->chunks);
+	// while (i < content->total)
+	// {
+	// 	content->movements += pa_pb(pileb, pilea);
+	// 	ft_printf("pa\n");
+	// 	i++;
+	// }
 }
 
 void    separate_piles(t_num **pilea, t_num **pileb, int *array, int total, t_values *content)
@@ -115,13 +133,13 @@ void    separate_piles(t_num **pilea, t_num **pileb, int *array, int total, t_va
 	array_chunks = array_in_chunks(total, array, content);
 	sort_array = order_array(array, content);
 	ordenate_piles(pilea, pileb, content, sort_array);
-	// while (i < content->chunks)
-	// {
-	// 	free(array_chunks[0]);
-	// 	i++;
-	// }
-	// free(array_chunks);
-	// free(sort_array);
+	while (i < content->chunks)
+	{
+		free(array_chunks[i]);
+		i++;
+	}
+	free(array_chunks);
+	free(sort_array);
 }
 
 
