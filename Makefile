@@ -23,6 +23,7 @@ SRCS = 	push_swap.c\
 		sort_numbers/sort_five.c\
 		sort_numbers/five_number_cases.c\
 		sort_numbers/sort_hundred.c\
+		sort_numbers/hundred_create_arrays/part1.c\
 		instructions/instructions00.c\
 		instructions/instructions01.c\
 

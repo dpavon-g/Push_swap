@@ -33,7 +33,6 @@ typedef struct nodo
 typedef struct s_dates
 {
 	int	total;
-	int	chunks;
 	int	columns;
 	int	movements;
 }	t_values;
@@ -65,5 +64,11 @@ void	case3(t_num **pilea, int *movements);
 void	case4(t_num **pilea, int *movements);
 void	case5(t_num **pilea, int *movements);
 int		count_numbers(t_num **pile);
+
+//int		number_of_chunk(t_values *content);
+int		*array_sorted(int *array, t_values *cont);
+//int		**separate_chunks(int *sort_array, t_values *cont);
+void	separate_piles(t_values *cont, int *array, t_num **pilea, t_num **pileb);
+int		*clone_array(t_num **pile, t_values *cont);
 
 #endif
