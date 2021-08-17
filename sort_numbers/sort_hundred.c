@@ -75,12 +75,12 @@ int	*order_array(int *array, t_values *content)
 	return (sort_array); 
 }
 
-int	find_in_chunk(int number, int *array, int columns)
+int	find_in_chunk(int number, int *array, t_values *content)
 {
 	int	i;
 
 	i = 0;
-	while (i < columns)
+	while (i < content->columns)
 	{
 		if (array[i] == number)
 			return (1);
@@ -89,36 +89,27 @@ int	find_in_chunk(int number, int *array, int columns)
 	return (0);
 }
 
-void	ordenate_piles(t_num **pilea, t_num **pileb, t_values *content, int *array)
+void	ordenate_piles(t_num **pilea, t_num **pileb, t_values *content, int *array, int **array_chunks)
 {
-	int	array_position;
-	int	chunk_number;
-	t_num *auxa;
-	t_num *auxb;
+	int		i;
 
-	auxa = *pilea;
-	auxb = *pileb;
-	auxa++;
-	auxb++;
-	array_position = 0;
-	chunk_number = 0;
+	i = 0;
 	array[0] = array[0];
-	while (array_position < content->total)
+	while (i < content->total)
 	{
-		if (array_position > (content->columns * (chunk_number + 1)))
+		if ((*pilea)->content <= array_chunks[0][content->columns - 1])
 		{
-			chunk_number++;
+			content->movements += pa_pb(pilea, pileb);
+			ft_printf("pb");
 		}
-		array_position++;
+		else 
+		{
+			content->movements += ra_rb(pilea);
+			ft_printf("ra");
+		}
+		i++;
 	}
-	ft_printf("Posicion de chunk final: %d\n", chunk_number);
-	ft_printf("Numero total de chunks: %d\n", content->chunks);
-	// while (i < content->total)
-	// {
-	// 	content->movements += pa_pb(pileb, pilea);
-	// 	ft_printf("pa\n");
-	// 	i++;
-	// }
+	// ft_printf("%d", array_chunks[0][content->columns]);
 }
 
 void    separate_piles(t_num **pilea, t_num **pileb, int *array, int total, t_values *content)
@@ -130,9 +121,10 @@ void    separate_piles(t_num **pilea, t_num **pileb, int *array, int total, t_va
 	i = 0;
 	content->total = total;
 	content->chunks = number_of_chunk(content);
-	array_chunks = array_in_chunks(total, array, content);
 	sort_array = order_array(array, content);
-	ordenate_piles(pilea, pileb, content, sort_array);
+	array_chunks = array_in_chunks(total, sort_array, content);
+	
+	ordenate_piles(pilea, pileb, content, sort_array, array_chunks);
 	while (i < content->chunks)
 	{
 		free(array_chunks[i]);
