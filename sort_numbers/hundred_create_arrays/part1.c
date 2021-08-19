@@ -54,7 +54,7 @@ int	*array_sorted(int *array, t_values *cont)
 	while (i < cont->total)
 	{
 		k = i + 1;
-		while (array[k])
+		while (k < cont->total)
 		{
 			if (array[i] > array[k])
 			{

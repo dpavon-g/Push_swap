@@ -35,6 +35,9 @@ typedef struct s_dates
 	int	total;
 	int	columns;
 	int	movements;
+	int	trash;
+	int	position;
+	int	flag;
 }	t_values;
 
 t_num	*ft_lstnew2(int content);
@@ -68,7 +71,7 @@ int		count_numbers(t_num **pile);
 //int		number_of_chunk(t_values *content);
 int		*array_sorted(int *array, t_values *cont);
 //int		**separate_chunks(int *sort_array, t_values *cont);
-void	separate_piles(t_values *cont, int *array, t_num **pilea, t_num **pileb);
+void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb);
 int		*clone_array(t_num **pile, t_values *cont);
 
 #endif

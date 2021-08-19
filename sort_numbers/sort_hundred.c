@@ -33,90 +33,95 @@
 // 	return (0);
 // }
 
-void	move_chunks(int *sort_array, t_values *cont, t_num **pilea, t_num **pileb)
+void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk)
 {
-	
+	cont->position = 0;
+	cont->flag = 0;
+	if (chunk != 5)
+	{
+		while (cont->position < cont->total)
+		{
+			if (array[cont->position] >= sort_arr[chunk * cont->columns]
+				&& array[cont->position]
+				<= sort_arr[((chunk + 1) * cont->columns) - 1])
+				cont->flag = 1;
+			if (array[(cont->total - 1) - cont->position]
+				>= sort_arr[chunk * cont->columns]
+				&& array[(cont->total - 1) - cont->position]
+				<= sort_arr[((chunk + 1) * cont->columns) - 1])
+				cont->flag = 2;
+			if (cont->flag == 1 || cont->flag == 2)
+				break ;
+			cont->position++;
+		}
+	}
 }
 
-// void	move_chunks(int *sort_array, t_values *cont, t_num **pilea, t_num **pileb)
-// {
-// 	int *array;
-// 	int	i;
-// 	int	l;
-// 	int	k;
-// 	int	trash;
-// 	int chunk;
+void	up_down(int *array, t_values *cont, t_num **pilea, t_num **pileb)
+{
+	if (cont->flag == 1)
+	{
+		while ((*pilea)->content != array[cont->position])
+		{
+			cont->movements += ra_rb(pilea);
+			ft_printf("a\n");
+		}
+		array[cont->position] = cont->trash;
+	}
+	else if (cont->flag == 2)
+	{
+		while ((*pilea)->content != array[(cont->total - 1) - cont->position])
+		{
+			cont->movements += rra_rrb(pilea);
+			ft_printf("rra\n");
+		}
+		array[(cont->total - 1) - cont->position] = cont->trash;
+	}
+	cont->movements += pa_pb(pilea, pileb);
+	ft_printf("pb\n");
+}
 
-// 	sort_array[0] = sort_array[0];
-// 	array = clone_array(pilea, cont);
-// 	trash = (sort_array[0] - 1);
-// 	cont->columns = cont->total / 5;
-// 	chunk = 0;
-// 	// while (chunk < 5)
-// 	// {
-// 		k = 0;
-// 		while (k < cont->total/5 && *pilea)
-// 		{
-// 			i = 0;
-// 			l = 0;
-// 			while (i < cont->total)
-// 			{
-// 				if (array[i] >= sort_array[chunk * cont->columns] && array[i] <= sort_array[((chunk + 1) * cont->columns) - 1])
-// 				{
-// 					l = 1;
-// 					ft_printf("Mayor que: %d\n", sort_array[chunk * cont->columns]);
-// 					ft_printf("Menor que: %d\n", sort_array[((chunk + 1) * cont->columns) - 1]);
-// 					ft_printf("El numero encontrado: %d\n", array[i]);
-// 					break;
-// 				}
-// 				if (array[(cont->total - 1) - i] >= sort_array[chunk * cont->columns] && array[(cont->total - 1) - i] <= sort_array[((chunk + 1) * cont->columns) - 1])
-// 				{
-// 					l = 2;
-// 					break;
-// 				}
-// 				i++;
-// 			}
-// 			//ft_printf("Ha encontrado el numero: %d\nl vale: %d\n", array[i], l);
-// 			if (l == 1)
-// 			{
-// 				while ((*pilea)->content != array[i])
-// 				{
-// 					cont->movements += ra_rb(pilea);
-// 					ft_printf("ra\n");
-// 				}
-// 				array[i] = trash;
-// 			}
-// 			if (l == 2)
-// 			{
-// 				while ((*pilea)->content != array[(cont->total - 1) - i])
-// 				{
-// 					cont->movements += rra_rrb(pilea);
-// 					ft_printf("rra\n");
-// 				}
-// 				array[(cont->total - 1) - i] = trash;
-// 			}
-// 			cont->movements += pa_pb(pilea, pileb);
-// 			ft_printf("pb\n");
-// 			k++;
-// 		}
-// 	// 	chunk++;
-// 	// }
-// 	ft_printf("Mas chico %d\n", sort_array[0]);
-// 	// while(*pilea)
-// 	// {
-// 	// 	cont->movements += pa_pb(pilea, pileb);
-// 	// 	ft_printf("pb\n");
-// 	// }
-// 	free(array);
-// }
+void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
+{
+	int	*array;
+	int	chunk;
+	int	conter;
 
-void	separate_piles(t_values *cont, int *array, t_num **pilea, t_num **pileb)
+	cont->flag = -1;
+	chunk = 0;
+	array = clone_array(pilea, cont);
+	while (chunk < 5)
+	{
+		conter = 0;
+		while (conter < cont->columns)
+		{
+			where_is_number(array, sort_arr, cont, chunk);
+			up_down(array, cont, pilea, pileb);
+			array = clone_array(pilea, cont);
+			cont->total--;
+			conter++;
+		}
+		chunk++;
+	}
+	while (*pilea)
+	{
+		cont->movements += pa_pb(pilea, pileb);
+		ft_printf("pb\n");
+	}
+}
+
+
+void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 {
 	int		*sort_array;
 
+	cont->columns = cont->total / 5;
 	sort_array = array_sorted(array, cont);
-	move_chunks(sort_array, cont, pilea, pileb);
+	cont->trash = sort_array[0] - 1;
+	move_chunks(sort_array, cont, pila, pilb);
 }
+
+// void	sort_last_chunk(t_num **pilea, t_num **pileb, )
 
 int	order_hundred(t_num **pilea, t_num **pileb, int total)
 {
@@ -130,6 +135,8 @@ int	order_hundred(t_num **pilea, t_num **pileb, int total)
 	content.total = total;
 	array = clone_array(pilea, &content);
 	separate_piles(&content, array, pilea, pileb);
+	content.total = total;
+	sort_last_chunk(pila, pilb, &content);
 	free(array);
 	return (content.movements);
 }
