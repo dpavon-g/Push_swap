@@ -12,27 +12,6 @@
 
 #include "../push_swap.h"
 
-/*
-	Tengo que encontrar un numero de chunk desde arriba
-	luego tengo que encontrar otro numero de chunk desde abajo
-	Compruebo cual es el que me pilla mas cerca
-	y el que me pille mas cerca es el que tengo que subir o bajar.
-*/
-
-// int	find_in_chunk(int number, int *array, t_values *content)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < content->columns)
-// 	{
-// 		if (array[i] == number)
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
 void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk)
 {
 	cont->position = 0;
@@ -110,7 +89,6 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 	}
 }
 
-
 void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 {
 	int		*sort_array;
@@ -121,12 +99,21 @@ void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 	move_chunks(sort_array, cont, pila, pilb);
 }
 
-// void	sort_last_chunk(t_num **pilea, t_num **pileb, )
+// void	sort_pileb(t_num **pilea, t_num **pilb, t_values *cont, int *sort_arr)
+// {
+// 	int	i;
+// 	int	*array;
+
+// 	i = 0;
+// 	array = clone_array(pileb, cont);
+// 	where_is_num2(array, sort_arr[con->total - 1]);
+// }
 
 int	order_hundred(t_num **pilea, t_num **pileb, int total)
 {
 	t_values	content;
 	int			*array;
+	int			*sort_array;
 	t_num		*auxb;
 
 	auxb = *pileb;
@@ -136,7 +123,8 @@ int	order_hundred(t_num **pilea, t_num **pileb, int total)
 	array = clone_array(pilea, &content);
 	separate_piles(&content, array, pilea, pileb);
 	content.total = total;
-	//sort_last_chunk(pila, pilb, &content);
+	sort_array = array_sorted(array, cont);
+	// sort_pileb(pila, pilb, &content, sort_array);
 	free(array);
 	return (content.movements);
 }
