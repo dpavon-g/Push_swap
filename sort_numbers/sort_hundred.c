@@ -64,7 +64,7 @@ void	up_down(int *array, t_values *cont, t_num **pilea, t_num **pileb)
 		while ((*pilea)->content != array[cont->position])
 		{
 			cont->movements += ra_rb(pilea);
-			ft_printf("a\n");
+			ft_printf("ra\n");
 		}
 		array[cont->position] = cont->trash;
 	}
@@ -136,7 +136,7 @@ int	order_hundred(t_num **pilea, t_num **pileb, int total)
 	array = clone_array(pilea, &content);
 	separate_piles(&content, array, pilea, pileb);
 	content.total = total;
-	sort_last_chunk(pila, pilb, &content);
+	//sort_last_chunk(pila, pilb, &content);
 	free(array);
 	return (content.movements);
 }
