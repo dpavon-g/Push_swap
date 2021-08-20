@@ -47,13 +47,13 @@ void	put_on(t_num **pilea, t_num **pileb, int *moves)
 		if (aux->content < aux->next->content)
 		{
 			moves += sa_sb(pileb);
-			ft_printf("SB\n");
+			ft_printf("sb\n");
 		}
 	}
 	while (aux)
 	{
 		*moves += pa_pb(pileb, pilea);
-		ft_printf("PB\n");
+		ft_printf("pa\n");
 		aux = aux->next;
 	}
 }

@@ -15,33 +15,33 @@
 void	case1(t_num **pilea, int *movements)
 {
 	*movements += rra_rrb(pilea);
-	ft_printf("RRA\n");
+	ft_printf("rra\n");
 	*movements += sa_sb(pilea);
-	ft_printf("SA\n");
+	ft_printf("sa\n");
 }
 
 void	case2(t_num **pilea, int *movements)
 {
 	*movements += rra_rrb(pilea);
-	ft_printf("RRA\n");
+	ft_printf("rra\n");
 }
 
 void	case3(t_num **pilea, int *movements)
 {
 	*movements += sa_sb(pilea);
-	ft_printf("SA\n");
+	ft_printf("sa\n");
 	*movements += rra_rrb(pilea);
-	ft_printf("RRA\n");
+	ft_printf("rra\n");
 }
 
 void	case4(t_num **pilea, int *movements)
 {
 	*movements += ra_rb(pilea);
-	ft_printf("RA\n");
+	ft_printf("ra\n");
 }
 
 void	case5(t_num **pilea, int *movements)
 {
 	*movements += sa_sb(pilea);
-	ft_printf("SA\n");
+	ft_printf("sa\n");
 }

@@ -18,9 +18,9 @@ int	cases3_five(t_num **pilea, t_num **pileb)
 
 	moves = 0;
 	moves += sa_sb(pilea);
-	ft_printf("SA\n");
+	ft_printf("sa\n");
 	moves += pa_pb(pilea, pileb);
-	ft_printf("PB\n");
+	ft_printf("pb\n");
 	return (moves);
 }
 
@@ -32,22 +32,22 @@ int	cases2_five(t_num **pilea, t_num **pileb, int position, int total)
 	if ((total == 4 && position == 2) || (position == 3 && total == 5))
 	{
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += pa_pb(pilea, pileb);
-		ft_printf("PB\n");
+		ft_printf("pb\n");
 	}
 	else if (total == 5 && position == 2)
 	{
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += pa_pb(pilea, pileb);
-		ft_printf("PB\n");
+		ft_printf("pb\n");
 	}
 	return (moves);
 }
@@ -60,7 +60,7 @@ int	cases_five(t_num **pilea, t_num **pileb, int position, int total)
 	if (position == 0)
 	{
 		moves += pa_pb(pilea, pileb);
-		ft_printf("PB\n");
+		ft_printf("pb\n");
 	}
 	else if (position == 1)
 	{
@@ -73,9 +73,9 @@ int	cases_five(t_num **pilea, t_num **pileb, int position, int total)
 	else if (position == 3 || position == 4)
 	{
 		moves += rra_rrb(pilea);
-		ft_printf("RRA\n");
+		ft_printf("rra\n");
 		moves += pa_pb(pilea, pileb);
-		ft_printf("PB\n");
+		ft_printf("pb\n");
 	}
 	return (moves);
 }

@@ -22,7 +22,7 @@ int	order_two(t_num **pilea)
 	if (num1 > num2)
 	{
 		sa_sb(pilea);
-		ft_printf("SA\n");
+		ft_printf("sa\n");
 		return (1);
 	}
 	return (0);

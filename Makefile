@@ -26,6 +26,7 @@ SRCS = 	push_swap.c\
 		sort_numbers/hundred_create_arrays/part1.c\
 		instructions/instructions00.c\
 		instructions/instructions01.c\
+		sort_numbers/sort_5_hundred.c\
 
 OBJECTS = $(SRCS:.c=.o)
 LIB_PATH = libft/

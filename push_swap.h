@@ -72,5 +72,11 @@ int		*array_sorted(int *array, t_values *cont);
 //int		**separate_chunks(int *sort_array, t_values *cont);
 void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb);
 int		*clone_array(t_num **pile, t_values *cont);
+void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk);
+void	up_down(int *array, t_values *cont, t_num **pilea, t_num **pileb);
 
+void	separate_fiveh(t_values *cont, int *array, t_num **pila, t_num **pilb);
+void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr);
+void	where_is_num2(int *array, int number, t_values *cont);
+int		order_fiveh(t_num **pilea, t_num **pileb, int total);
 #endif
