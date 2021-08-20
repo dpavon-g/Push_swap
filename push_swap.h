@@ -35,7 +35,6 @@ typedef struct s_dates
 	int	total;
 	int	columns;
 	int	movements;
-	int	trash;
 	int	position;
 	int	flag;
 }	t_values;
