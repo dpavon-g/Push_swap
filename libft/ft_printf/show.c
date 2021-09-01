@@ -63,7 +63,7 @@ void	digits(int *length, va_list ap, t_printf *content)
 	int	num;
 
 	num = va_arg(ap, int);
-	if (content->haveSpace == 1)
+	if (content->have_space == 1)
 	{
 		ft_putchar_fd(' ', 1);
 		(*length)++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 20:54:17 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/07/31 20:54:18 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/01 15:12:50 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ int	filter_errors(char *str)
 			flag = 1;
 		tester++;
 	}
+	return (flag);
+}
+
+int	is_order(t_num **pilea)
+{
+	t_num	*aux;
+	int		flag;
+
+	aux = *pilea;
+	flag = 0;
+	while ((*pilea)->next)
+	{
+		if ((*pilea)->content < (*pilea)->next->content)
+			flag = 0;
+		else
+		{
+			flag = 1;
+			break ;
+		}
+		(*pilea) = (*pilea)->next;
+	}
+	*pilea = aux;
 	return (flag);
 }
 
@@ -72,8 +94,13 @@ int	main(int argc, char **argv)
 		if (flags == 1)
 			ft_printf("Error");
 		else
-			to_sort(&pilea, &pileb);
-		show_pile(pilea, pileb);
+		{
+			if (is_order(&pilea) == 1)
+			{
+				to_sort(&pilea, &pileb);
+				show_pile(pilea, pileb);
+			}
+		}
 	}
 	return (0);
 }

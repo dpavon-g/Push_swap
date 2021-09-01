@@ -25,7 +25,7 @@ void	show_string(int *length, char *string)
 	}
 }
 
-int	ft_lenFinal(unsigned long num, int base)
+int	ft_len_final(unsigned long num, int base)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ char	*ft_transform_number(unsigned long num, int type, int base)
 		string = ft_strdup("0123456789ABCDEF");
 	else
 		string = ft_strdup("0123456789abcdef");
-	len = ft_lenFinal(num, base);
+	len = ft_len_final(num, base);
 	number = (char *)malloc(sizeof(char) * len + 1);
 	number[len] = '\0';
 	len--;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	move_fiveh(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 {

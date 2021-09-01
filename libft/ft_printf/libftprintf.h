@@ -29,13 +29,13 @@ typedef struct s_printfStruct
 	int	width;
 	int	precision;
 	int	less;
-	int	haveSpace;
-	int	haveFlag;
+	int	have_space;
+	int	have_flag;
 }	t_printf;
 int		ft_travel(va_list ap, const char *str);
 int		ft_printf(const char *str, ...);
 void	show_string(int *length, char *string);
-int		ft_lenFinal(unsigned long num, int base);
+int		ft_len_final(unsigned long num, int base);
 char	*ft_transform_number(unsigned long num, int type, int base);
 int		str_spaces2(int *length, t_printf *content, char *str, int len);
 int		str_spaces(int *length, t_printf *content, char *str);

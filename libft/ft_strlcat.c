@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 12:56:15 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/03/15 12:56:19 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/01 15:53:04 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 /*
 	i = length of dst
 	If the size to copy(dstsize) on dst is smaller than dst, return 

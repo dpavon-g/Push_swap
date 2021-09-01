@@ -20,7 +20,7 @@ int	specify_flag(const char *str, int *leng, t_printf *content, va_list ap)
 	while (ft_strchr(TYPES, str[i]) == 0 && str[i])
 	{
 		if (str[i] == ' ')
-			content->haveSpace = 1;
+			content->have_space = 1;
 		else if (str[i] == '.')
 			i += point(&str[i], content, ap);
 		else if (str[i] >= '0' && str[i] <= '9')

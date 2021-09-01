@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_hundred.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/08/17 17:31:06 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/01 15:53:37 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk)
 {

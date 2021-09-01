@@ -38,7 +38,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C $(LIB_PATH)
-	@$(CC) $(SRCS) -L ./libft/ -l ft -o $(NAME)
+	@$(CC) $(CFLAGS) $^ -L ./libft/ -l ft -o $@
 
 clean:
 	@make -C $(LIB_PATH) clean
