@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_hundred.c                                     :+:      :+:    :+:   */
+/*   sort_5_hundred.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/08/17 17:31:06 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/04 16:36:30 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	move_fiveh(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 {
@@ -20,7 +20,7 @@ void	move_fiveh(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 
 	cont->flag = -1;
 	chunk = 0;
-	array = clone_array(pilea, cont);
+	array = clone_array(pilea, cont->total);
 	while (chunk < 11)
 	{
 		conter = 0;
@@ -28,7 +28,7 @@ void	move_fiveh(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 		{
 			where_is_number(array, sort_arr, cont, chunk);
 			up_down(array, cont, pilea, pileb);
-			array = clone_array(pilea, cont);
+			array = clone_array(pilea, cont->total);
 			cont->total--;
 			conter++;
 		}
@@ -46,8 +46,36 @@ void	separate_fiveh(t_values *cont, int *array, t_num **pila, t_num **pilb)
 	int		*sort_array;
 
 	cont->columns = cont->total / 11;
-	sort_array = array_sorted(array, cont);
+	sort_array = array_sorted(array, cont->total);
 	move_fiveh(sort_array, cont, pila, pilb);
+}
+
+int	move_rr(int position, t_num **pileb, int flag)
+{
+	int	i;
+	int	movements;
+
+	movements = 0;
+	i = 0;
+	if (flag == 1)
+	{
+		while (i < position)
+		{
+			movements += ra_rb(pileb);
+			ft_printf("rb\n");
+			i++;
+		}
+	}
+	else if (flag == 2)
+	{
+		while (i <= position)
+		{
+			movements += rra_rrb(pileb);
+			ft_printf("rrb\n");
+			i++;
+		}
+	}
+	return (movements);
 }
 
 void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
@@ -58,26 +86,9 @@ void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 	while (cont->total > 0)
 	{
 		i = 0;
-		array = clone_array(pileb, cont);
+		array = clone_array(pileb, cont->total);
 		where_is_num2(array, sort_arr[cont->total - 1], cont);
-		if (cont->flag == 1)
-		{
-			while (i < cont->position)
-			{
-				cont->movements += ra_rb(pileb);
-				ft_printf("rb\n");
-				i++;
-			}
-		}
-		else if (cont->flag == 2)
-		{
-			while (i <= cont->position)
-			{
-				cont->movements += rra_rrb(pileb);
-				ft_printf("rrb\n");
-				i++;
-			}
-		}
+		cont->movements += move_rr(cont->position, pileb, cont->flag);
 		cont->movements += pa_pb(pileb, pilea);
 		ft_printf("pa\n");
 		cont->total--;
@@ -95,10 +106,10 @@ int	order_fiveh(t_num **pilea, t_num **pileb, int total)
 	auxb++;
 	ft_bzero(&content, sizeof(content));
 	content.total = total;
-	array = clone_array(pilea, &content);
-	separate_piles(&content, array, pilea, pileb);
+	array = clone_array(pilea, total);
+	separate_fiveh(&content, array, pilea, pileb);
 	content.total = total;
-	sort_array = array_sorted(array, &content);
+	sort_array = array_sorted(array, total);
 	sort_fiveh(pilea, pileb, &content, sort_array);
 	free(array);
 	return (content.movements);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavon <pavon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:45 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/07/21 18:21:02 by pavon            ###   ########.fr       */
+/*   Updated: 2021/09/04 16:38:31 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_num	*ft_lstlast2(t_num *lst);
 void	ft_lstadd_back2(t_num **lst, t_num *new);
 void	add_in_pile(t_num **pile, int t_nume);
 void	show_pile(t_num *pilea, t_num *pileb);
+int		repeat_number(t_num **pilea);
+int		is_order(t_num **pilea);
+int		filter_errors(char *str);
 void	to_sort(t_num **pilea, t_num **pileb);
 int		order_two(t_num **pilea);
 int		order_three(t_num **pilea);
@@ -66,17 +69,14 @@ void	case3(t_num **pilea, int *movements);
 void	case4(t_num **pilea, int *movements);
 void	case5(t_num **pilea, int *movements);
 int		count_numbers(t_num **pile);
-
-//int		number_of_chunk(t_values *content);
-int		*array_sorted(int *array, t_values *cont);
-//int		**separate_chunks(int *sort_array, t_values *cont);
+int		*array_sorted(int *array, int total);
 void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb);
-int		*clone_array(t_num **pile, t_values *cont);
+int		*clone_array(t_num **pile, int total);
 void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk);
 void	up_down(int *array, t_values *cont, t_num **pilea, t_num **pileb);
-
 void	separate_fiveh(t_values *cont, int *array, t_num **pila, t_num **pilb);
 void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr);
 void	where_is_num2(int *array, int number, t_values *cont);
 int		order_fiveh(t_num **pilea, t_num **pileb, int total);
+int		move_rr(int position, t_num **pileb, int flag);
 #endif

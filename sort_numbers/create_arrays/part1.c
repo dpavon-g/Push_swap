@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   part1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:47:11 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/08/17 18:47:13 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/04 16:16:10 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*clone_array(t_num **pile, t_values *cont)
+int	*clone_array(t_num **pile, int total)
 {
 	t_num	*aux;
 	int		*array;
 	int		i;
 
 	aux = *pile;
-	array = malloc(sizeof(int) * cont->total);
+	array = malloc(sizeof(int) * total);
 	i = 0;
 	while (aux)
 	{
@@ -30,17 +30,17 @@ int	*clone_array(t_num **pile, t_values *cont)
 	return (array);
 }
 
-int	*array_sorted(int *array, t_values *cont)
+int	*array_sorted(int *array, int total)
 {
 	int	aux;
 	int	i;
 	int	k;
 
 	i = 0;
-	while (i < cont->total)
+	while (i < total)
 	{
 		k = i + 1;
-		while (k < cont->total)
+		while (k < total)
 		{
 			if (array[i] > array[k])
 			{

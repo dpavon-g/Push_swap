@@ -6,35 +6,11 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/01 15:53:37 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/04 16:37:20 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	where_is_number(int *array, int *sort_arr, t_values *cont, int chunk)
-{
-	cont->position = 0;
-	cont->flag = 0;
-	if (chunk != 5)
-	{
-		while (cont->position < cont->total)
-		{
-			if (array[cont->position] >= sort_arr[chunk * cont->columns]
-				&& array[cont->position]
-				<= sort_arr[((chunk + 1) * cont->columns) - 1])
-				cont->flag = 1;
-			if (array[(cont->total - 1) - cont->position]
-				>= sort_arr[chunk * cont->columns]
-				&& array[(cont->total - 1) - cont->position]
-				<= sort_arr[((chunk + 1) * cont->columns) - 1])
-				cont->flag = 2;
-			if (cont->flag == 1 || cont->flag == 2)
-				break ;
-			cont->position++;
-		}
-	}
-}
 
 void	up_down(int *array, t_values *cont, t_num **pilea, t_num **pileb)
 {
@@ -66,7 +42,7 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 
 	cont->flag = -1;
 	chunk = 0;
-	array = clone_array(pilea, cont);
+	array = clone_array(pilea, cont->total);
 	while (chunk < 5)
 	{
 		conter = 0;
@@ -74,7 +50,7 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 		{
 			where_is_number(array, sort_arr, cont, chunk);
 			up_down(array, cont, pilea, pileb);
-			array = clone_array(pilea, cont);
+			array = clone_array(pilea, cont->total);
 			cont->total--;
 			conter++;
 		}
@@ -92,24 +68,8 @@ void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 	int		*sort_array;
 
 	cont->columns = cont->total / 5;
-	sort_array = array_sorted(array, cont);
+	sort_array = array_sorted(array, cont->total);
 	move_chunks(sort_array, cont, pila, pilb);
-}
-
-void	where_is_num2(int *array, int number, t_values *cont)
-{
-	cont->position = 0;
-	cont->flag = 0;
-	while (cont->position < cont->total)
-	{
-		if (array[cont->position] == number)
-			cont->flag = 1;
-		else if (array[(cont->total - 1) - cont->position] == number)
-			cont->flag = 2;
-		if (cont->flag == 1 || cont->flag == 2)
-			break ;
-		cont->position++;
-	}
 }
 
 void	sort_pileb(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
@@ -120,26 +80,9 @@ void	sort_pileb(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 	while (cont->total > 0)
 	{
 		i = 0;
-		array = clone_array(pileb, cont);
+		array = clone_array(pileb, cont->total);
 		where_is_num2(array, sort_arr[cont->total - 1], cont);
-		if (cont->flag == 1)
-		{
-			while (i < cont->position)
-			{
-				cont->movements += ra_rb(pileb);
-				ft_printf("rb\n");
-				i++;
-			}
-		}
-		else if (cont->flag == 2)
-		{
-			while (i <= cont->position)
-			{
-				cont->movements += rra_rrb(pileb);
-				ft_printf("rrb\n");
-				i++;
-			}
-		}
+		cont->movements += move_rr(cont->position, pileb, cont->flag);
 		cont->movements += pa_pb(pileb, pilea);
 		ft_printf("pa\n");
 		cont->total--;
@@ -157,10 +100,10 @@ int	order_hundred(t_num **pilea, t_num **pileb, int total)
 	auxb++;
 	ft_bzero(&content, sizeof(content));
 	content.total = total;
-	array = clone_array(pilea, &content);
+	array = clone_array(pilea, total);
 	separate_piles(&content, array, pilea, pileb);
 	content.total = total;
-	sort_array = array_sorted(array, &content);
+	sort_array = array_sorted(array, total);
 	sort_array[0] = sort_array[0];
 	sort_pileb(pilea, pileb, &content, sort_array);
 	free(array);
