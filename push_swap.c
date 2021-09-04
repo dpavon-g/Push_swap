@@ -29,7 +29,6 @@ int	find_not_space(char *str)
 int	take_args(char **argv, t_num **pilea)
 {
 	char	**str;
-	int		num;
 	int		i;
 	int		k;
 	int		flag;
@@ -46,8 +45,7 @@ int	take_args(char **argv, t_num **pilea)
 			while (str[k])
 			{
 				flag = filter_errors(str[k]);
-				num = ft_atoi(str[k]);
-				add_in_pile(pilea, num);
+				add_in_pile(pilea, ft_atoi(str[k]));
 				free(str[k++]);
 			}
 			free(str);

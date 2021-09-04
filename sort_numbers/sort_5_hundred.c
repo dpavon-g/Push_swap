@@ -81,11 +81,9 @@ int	move_rr(int position, t_num **pileb, int flag)
 void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 {
 	int	*array;
-	int	i;
 
 	while (cont->total > 0)
 	{
-		i = 0;
 		array = clone_array(pileb, cont->total);
 		where_is_num2(array, sort_arr[cont->total - 1], cont);
 		cont->movements += move_rr(cont->position, pileb, cont->flag);

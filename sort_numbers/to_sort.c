@@ -44,4 +44,5 @@ void	to_sort(t_num **pilea, t_num **pileb)
 		movements = order_hundred(pilea, pileb, total);
 	else if (total > 100 && total <= 500)
 		movements = order_fiveh(pilea, pileb, total);
+	(void)movements;
 }

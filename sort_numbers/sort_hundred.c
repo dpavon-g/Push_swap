@@ -75,11 +75,9 @@ void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 void	sort_pileb(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 {
 	int	*array;
-	int	i;
 
 	while (cont->total > 0)
 	{
-		i = 0;
 		array = clone_array(pileb, cont->total);
 		where_is_num2(array, sort_arr[cont->total - 1], cont);
 		cont->movements += move_rr(cont->position, pileb, cont->flag);
