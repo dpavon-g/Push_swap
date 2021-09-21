@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_five.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpavon-g <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 03:41:18 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/08/07 03:41:19 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:37:36 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ void	put_on(t_num **pilea, t_num **pileb, int *moves)
 			ft_printf("sb\n");
 		}
 	}
-	while (aux)
+	while (count_numbers(pileb) != 0)
 	{
 		*moves += pa_pb(pileb, pilea);
 		ft_printf("pa\n");
-		aux = aux->next;
 	}
 }
 

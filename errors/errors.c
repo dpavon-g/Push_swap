@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:25:35 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/04 20:17:20 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 12:05:26 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ int	repeat_number(t_num **pilea)
 	int	total;
 	int	flag;
 	int	i;
+	int	*other_array;
 
 	i = 0;
 	flag = 0;
 	total = count_numbers(pilea);
-	array = array_sorted(clone_array(pilea, total), total);
-	while (i < total)
+	other_array = clone_array(pilea, total);
+	array = array_sorted(other_array, total);
+	while (i < total - 1)
 	{
 		if (array[i] == array[i + 1])
-		{
 			flag = 1;
-			break ;
-		}
 		i++;
 	}
+	free(other_array);
 	return (flag);
 }
 

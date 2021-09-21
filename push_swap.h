@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:35:45 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/04 16:38:31 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:37:33 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include "libft/libft.h"
 # include "libft/ft_printf/libftprintf.h"
 
-typedef struct nodo
+typedef struct s_num
 {
 	int				content;
-	struct nodo		*next;
+	struct s_num	*next;
 }	t_num;
 
 typedef struct s_dates

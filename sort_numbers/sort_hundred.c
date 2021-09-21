@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/04 16:37:20 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 12:03:29 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 		{
 			where_is_number(array, sort_arr, cont, chunk);
 			up_down(array, cont, pilea, pileb);
+			free(array);
 			array = clone_array(pilea, cont->total);
 			cont->total--;
 			conter++;
 		}
 		chunk++;
 	}
+	free(array);
 	while (*pilea)
 	{
 		cont->movements += pa_pb(pilea, pileb);
@@ -77,13 +79,14 @@ void	sort_pileb(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 	int	*array;
 
 	while (cont->total > 0)
-	{
+	{	
 		array = clone_array(pileb, cont->total);
 		where_is_num2(array, sort_arr[cont->total - 1], cont);
 		cont->movements += move_rr(cont->position, pileb, cont->flag);
 		cont->movements += pa_pb(pileb, pilea);
 		ft_printf("pa\n");
 		cont->total--;
+		free(array);
 	}
 }
 
@@ -92,17 +95,13 @@ int	order_hundred(t_num **pilea, t_num **pileb, int total)
 	t_values	content;
 	int			*array;
 	int			*sort_array;
-	t_num		*auxb;
 
-	auxb = *pileb;
-	auxb++;
 	ft_bzero(&content, sizeof(content));
 	content.total = total;
 	array = clone_array(pilea, total);
 	separate_piles(&content, array, pilea, pileb);
 	content.total = total;
 	sort_array = array_sorted(array, total);
-	sort_array[0] = sort_array[0];
 	sort_pileb(pilea, pileb, &content, sort_array);
 	free(array);
 	return (content.movements);

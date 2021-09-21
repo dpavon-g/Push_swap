@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/04 16:36:30 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:41:39 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void	move_fiveh(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 		{
 			where_is_number(array, sort_arr, cont, chunk);
 			up_down(array, cont, pilea, pileb);
+			free(array);
 			array = clone_array(pilea, cont->total);
 			cont->total--;
 			conter++;
 		}
 		chunk++;
 	}
+	free(array);
 	while (*pilea)
 	{
 		cont->movements += pa_pb(pilea, pileb);
@@ -90,6 +92,7 @@ void	sort_fiveh(t_num **pilea, t_num **pileb, t_values *cont, int *sort_arr)
 		cont->movements += pa_pb(pileb, pilea);
 		ft_printf("pa\n");
 		cont->total--;
+		free(array);
 	}
 }
 

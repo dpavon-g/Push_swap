@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 03:41:52 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/04 20:14:50 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 11:42:45 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	to_sort(t_num **pilea, t_num **pileb)
 		movements = order_five(pilea, pileb, total);
 	else if (total > 5 && total <= 100)
 		movements = order_hundred(pilea, pileb, total);
-	else if (total > 100 && total <= 500)
+	else if (total >= 100)
 		movements = order_fiveh(pilea, pileb, total);
 	(void)movements;
 }
