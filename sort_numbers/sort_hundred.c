@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 17:31:05 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/21 12:03:29 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:44:43 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 	int	chunk;
 	int	conter;
 
-	cont->flag = -1;
 	chunk = 0;
 	array = clone_array(pilea, cont->total);
-	while (chunk < 5)
+	while (chunk++ < 5)
 	{
 		conter = 0;
 		while (conter < cont->columns)
@@ -55,7 +54,6 @@ void	move_chunks(int *sort_arr, t_values *cont, t_num **pilea, t_num **pileb)
 			cont->total--;
 			conter++;
 		}
-		chunk++;
 	}
 	free(array);
 	while (*pilea)
@@ -71,6 +69,7 @@ void	separate_piles(t_values *cont, int *array, t_num **pila, t_num **pilb)
 
 	cont->columns = cont->total / 5;
 	sort_array = array_sorted(array, cont->total);
+	cont->flag = -1;
 	move_chunks(sort_array, cont, pila, pilb);
 }
 
