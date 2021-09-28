@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 20:54:17 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/21 12:04:56 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:49:27 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,22 @@ int	take_args(char **argv, t_num **pilea)
 	return (flag);
 }
 
+void	ft_lstclear2(t_num **lst)
+{
+	t_num	*copy;
+
+	copy = NULL;
+	if (lst)
+	{
+		while (*lst)
+		{
+			copy = (*lst)->next;
+			free(*lst);
+			*lst = copy;
+		}
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_num	*pilea;
@@ -73,12 +89,10 @@ int	main(int argc, char **argv)
 		{
 			if (repeat_number(&pilea) == 1)
 				ft_printf("Error\n");
-		}
-		if (flags == 0)
-		{
-			if (is_order(&pilea) == 1)
+			else if (is_order(&pilea) == 1)
 				to_sort(&pilea, &pileb);
 		}
+		ft_lstclear2(&pilea);
 	}
 	return (0);
 }

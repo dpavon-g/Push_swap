@@ -6,7 +6,7 @@
 /*   By: dpavon-g <dpavon-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:25:35 by dpavon-g          #+#    #+#             */
-/*   Updated: 2021/09/21 12:05:26 by dpavon-g         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:56:58 by dpavon-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	filter_errors(char *str)
 	while (str[tester])
 	{
 		if (!((str[tester] >= '0' && str[tester] <= '9') || (str[tester] == '-'
+					&& (str[tester + 1] >= '0' && str[tester + 1] <= '9'))
+				|| (str[tester] == '+'
 					&& (str[tester + 1] >= '0' && str[tester + 1] <= '9'))))
 			flag = 1;
 		if (flag == 1)
